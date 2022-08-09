@@ -39,7 +39,7 @@ const data = [
 
 const res = aggregate(data, [{ $match: { age: 35 } }]);
 
-(res) => [
+res => [
 	{ id: 2, name: "Bill", age: 35 },
 	{ id: 3, name: "Jane", age: 35 },
 ];
@@ -82,7 +82,7 @@ const data = [
 
 const res = aggregate(data, [{ $sort: { age: 1 } }]);
 
-(res) => [
+res => [
 	{ id: 1, name: "Jane", age: 20 },
 	{ id: 2, name: "Bill", age: 35 },
 	{ id: 3, name: "Jane", age: 35 },
@@ -102,7 +102,7 @@ const data = [
 
 const res = aggregate(data, [{ $limit: { $count: 1 } }]);
 
-(res) => [{ id: 1, name: "Jane", age: 20 }];
+res => [{ id: 1, name: "Jane", age: 20 }];
 ```
 
 ## $skip
@@ -117,7 +117,7 @@ const data = [
 ];
 const res = aggregate(data, [{ $skip: { $count: 1 } }]);
 
-(res) => [
+res => [
 	{ id: 2, name: "Bill", age: 35 },
 	{ id: 3, name: "Jane", age: 35 },
 ];
@@ -136,7 +136,7 @@ const data = [
 
 const res = aggregate(data, [{ $format: { age: 1, name: 1 } }]);
 
-(res) => [
+res => [
 	{ age: 20, name: "Jane" },
 	{ age: 35, name: "Bill" },
 	{ age: 35, name: "Jane" },
@@ -152,7 +152,7 @@ const data = [];
 
 const res = aggregate(data, [{ $unwind: { $path: <value> } }]);
 
-(res) => [];
+res => [];
 ```
 
 ## Multiple pipeline
@@ -165,7 +165,7 @@ const data = [
 ];
 const res = aggregate(data, [{ $match: { age: 35 } }, { $format: { age: 1, name: 1 } }]);
 
-(res) => [
+res => [
 	{ age: 35, name: "Bill" },
 	{ age: 35, name: "Jane" },
 ];
