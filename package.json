@@ -1,6 +1,6 @@
 {
 	"name": "aggregationjs",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "Inspired by mongodb aggregation framework, aggregationjs its lightweight and easy tool to manipulate data.",
 	"main": "./src/index.js",
 	"scripts": {

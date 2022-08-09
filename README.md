@@ -43,7 +43,7 @@ const users = [
 		age: 35,
 	},
 ];
-const res = aggregate(arr, [
+const res = aggregate(users, [
 	{
 		$match: {
 			age: 35,
