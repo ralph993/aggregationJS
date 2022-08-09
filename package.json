@@ -1,0 +1,11 @@
+{
+	"name": "aggregationjs",
+	"version": "1.0.0",
+	"description": "",
+	"main": "./src/index.js",
+	"scripts": {
+		"dev": "nodemon ./src/index.js"
+	},
+	"author": "rafael hernandez",
+	"license": "MIT"
+}
