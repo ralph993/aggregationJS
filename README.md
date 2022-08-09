@@ -32,16 +32,16 @@ Filters the documents to pass only the documents that match the specified condit
 
 ```js
 const data = [
-	{ id: 1, name: "Jane", age: 20 },
-	{ id: 2, name: "Bill", age: 35 },
-	{ id: 3, name: "Jane", age: 35 },
+ { id: 1, name: "Jane", age: 20 },
+ { id: 2, name: "Bill", age: 35 },
+ { id: 3, name: "Jane", age: 35 },
 ];
 
 const res = aggregate(data, [{ $match: { age: 35 } }]);
 
 res => [
-	{ id: 2, name: "Bill", age: 35 },
-	{ id: 3, name: "Jane", age: 35 },
+ { id: 2, name: "Bill", age: 35 },
+ { id: 3, name: "Jane", age: 35 },
 ];
 ```
 
@@ -75,17 +75,17 @@ Sorts the elements of an array in place and returns the reference to the same ar
 
 ```js
 const data = [
-	{ id: 1, name: "Jane", age: 20 },
-	{ id: 2, name: "Bill", age: 35 },
-	{ id: 3, name: "Jane", age: 35 },
+ { id: 1, name: "Jane", age: 20 },
+ { id: 2, name: "Bill", age: 35 },
+ { id: 3, name: "Jane", age: 35 },
 ];
 
 const res = aggregate(data, [{ $sort: { age: 1 } }]);
 
 res => [
-	{ id: 1, name: "Jane", age: 20 },
-	{ id: 2, name: "Bill", age: 35 },
-	{ id: 3, name: "Jane", age: 35 },
+ { id: 1, name: "Jane", age: 20 },
+ { id: 2, name: "Bill", age: 35 },
+ { id: 3, name: "Jane", age: 35 },
 ];
 ```
 
@@ -95,9 +95,9 @@ Limits the number of documents passed to the next stage in the pipeline.
 
 ```js
 const data = [
-	{ id: 1, name: "Jane", age: 20 },
-	{ id: 2, name: "Bill", age: 35 },
-	{ id: 3, name: "Jane", age: 35 },
+ { id: 1, name: "Jane", age: 20 },
+ { id: 2, name: "Bill", age: 35 },
+ { id: 3, name: "Jane", age: 35 },
 ];
 
 const res = aggregate(data, [{ $limit: { $count: 1 } }]);
@@ -111,15 +111,16 @@ Documentation for $skip...
 
 ```js
 const data = [
-	{ id: 1, name: "Jane", age: 20 },
-	{ id: 2, name: "Bill", age: 35 },
-	{ id: 3, name: "Jane", age: 35 },
+ { id: 1, name: "Jane", age: 20 },
+ { id: 2, name: "Bill", age: 35 },
+ { id: 3, name: "Jane", age: 35 },
 ];
+
 const res = aggregate(data, [{ $skip: { $count: 1 } }]);
 
 res => [
-	{ id: 2, name: "Bill", age: 35 },
-	{ id: 3, name: "Jane", age: 35 },
+ { id: 2, name: "Bill", age: 35 },
+ { id: 3, name: "Jane", age: 35 },
 ];
 ```
 
@@ -129,17 +130,17 @@ Documentation for $format...
 
 ```js
 const data = [
-	{ id: 1, name: "Jane", age: 20 },
-	{ id: 2, name: "Bill", age: 35 },
-	{ id: 3, name: "Jane", age: 35 },
+ { id: 1, name: "Jane", age: 20 },
+ { id: 2, name: "Bill", age: 35 },
+ { id: 3, name: "Jane", age: 35 },
 ];
 
 const res = aggregate(data, [{ $format: { age: 1, name: 1 } }]);
 
 res => [
-	{ age: 20, name: "Jane" },
-	{ age: 35, name: "Bill" },
-	{ age: 35, name: "Jane" },
+ { age: 20, name: "Jane" },
+ { age: 35, name: "Bill" },
+ { age: 35, name: "Jane" },
 ];
 ```
 
@@ -159,15 +160,16 @@ res => [];
 
 ```js
 const data = [
-	{ id: 1, name: "Jane", age: 20 },
-	{ id: 2, name: "Bill", age: 35 },
-	{ id: 3, name: "Jane", age: 35 },
+ { id: 1, name: "Jane", age: 20 },
+ { id: 2, name: "Bill", age: 35 },
+ { id: 3, name: "Jane", age: 35 },
 ];
+
 const res = aggregate(data, [{ $match: { age: 35 } }, { $format: { age: 1, name: 1 } }]);
 
 res => [
-	{ age: 35, name: "Bill" },
-	{ age: 35, name: "Jane" },
+ { age: 35, name: "Bill" },
+ { age: 35, name: "Jane" },
 ];
 ```
 
