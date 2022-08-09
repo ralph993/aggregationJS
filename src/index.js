@@ -70,26 +70,3 @@ exports.aggregate = (arr, pipeline) => {
 		return operatorsList[key](acc, value);
 	}, arr);
 };
-
-const users = [
-	{
-		_id: 1,
-		name: "John",
-		age: 20,
-	},
-	{
-		_id: 2,
-		name: "Bill",
-		age: 30,
-	},
-	{
-		_id: 3,
-		name: "Mary",
-		age: 40,
-	},
-	{
-		_id: 4,
-		name: "Jane",
-		age: 30,
-	},
-];
