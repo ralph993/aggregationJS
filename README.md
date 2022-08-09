@@ -9,7 +9,7 @@
 
 ```
 
-## CLI Pipeline operators
+## Pipeline operators
 
 -   [$match](#$match)
 -   [$format](#$format)
