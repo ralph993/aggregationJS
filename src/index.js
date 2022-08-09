@@ -70,6 +70,22 @@ const operatorsHandlers = {
 	$skip: (arr, query) => {
 		return arr.slice(query["$count"]);
 	},
+	$unwind: (arr, query) => {
+		let result = [];
+
+		for (let i = 0; i < arr.length; i++) {
+			const item = arr[i];
+			const path = query["$path"];
+			for (let j = 0; j < item[path].length; j++) {
+				result.push({
+					...item,
+					[path]: item[path][j],
+				});
+			}
+		}
+
+		return result;
+	},
 };
 
 exports.aggregate = (arr, pipeline) => {
