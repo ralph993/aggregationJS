@@ -66,7 +66,7 @@ res => {
 ```
 
 ## $sort
-Documentation for $sort...
+Sorts the elements of an array in place and returns the reference to the same array, now sorted.
 ```js
 const data = [
  { id: 1, name: "Jane", age: 20 },
@@ -86,7 +86,7 @@ res => [
 ```
 
 ## $limit
-Documentation for $limit...
+Limits the number of documents passed to the next stage in the pipeline.
 ```js
 const data = [
  { id: 1, name: "Jane", age: 20 },
