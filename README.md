@@ -27,7 +27,7 @@ npm install aggregationjs
 const { aggregate } = require("aggregationjs");
 const res = aggregate(data, pipeline);
 
-ES6; //
+// ES6
 import { aggregate } from "aggregationjs";
 ```
 
@@ -236,6 +236,8 @@ const res = aggregate(data, [{ $remove: { id: 1 } }]);
 
 #### $sum
 
+Calculates and returns the collective sum of numeric values.
+
 ```js
 const users = [
   { id: 4, name: "Dean", age: 40 },
@@ -258,6 +260,8 @@ const res = aggregate(users, [
 ```
 
 #### $avg
+
+Returns the average value of the numeric values.
 
 ```js
 const users = [
@@ -282,6 +286,8 @@ const res = aggregate(users, [
 
 #### $min
 
+Returns the minimum value.
+
 ```js
 const users = [
   { id: 4, name: "Dean", age: 40 },
@@ -304,6 +310,8 @@ const res = aggregate(users, [
 ```
 
 #### $max
+
+Returns the maximum value.
 
 ```js
 const users = [
