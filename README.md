@@ -27,7 +27,7 @@ npm install aggregationjs
 const { aggregate } = require("aggregationjs");
 const res = aggregate(data, pipeline);
 
-ES6; //
+// ES6
 import { aggregate } from "aggregationjs";
 ```
 
