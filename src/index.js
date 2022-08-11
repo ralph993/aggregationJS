@@ -138,7 +138,7 @@ const operatorsHandlers = {
   },
 };
 
-const aggregate = (arr, pipeline) => {
+exports.aggregate = (arr, pipeline) => {
   if (!Array.isArray(pipeline)) throw new Error("Pipeline must be an array");
   if (!pipeline.length)
     throw new Error("Pipeline must contain at least one operator");
