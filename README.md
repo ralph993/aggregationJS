@@ -19,7 +19,7 @@ npm install aggregationjs
 - [$unwind](#unwind)
 - [$math](#math)
 - [$remove](#remove)
-- [Multiple pipeline](#multiple-pipeline)
+- [Multiple pipelines](#multiple-pipelines)
 
 ## Usage
 
