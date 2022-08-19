@@ -51,7 +51,7 @@ const res = aggregate(data, [{ $match: { age: 35 } }]);
 ];
 ```
 
-## $groupBy \*
+## $groupBy
 
 Groups the elements of the calling array according to the string values returned by a provided testing function. The returned object has separate properties for each group, containing arrays with the elements in the group.
 
@@ -135,7 +135,7 @@ const res = aggregate(data, [{ $skip: { $count: 1 } }]);
 ];
 ```
 
-## $format \*
+## $format
 
 Passes along the documents with the requested fields to the next stage in the pipeline
 
@@ -211,7 +211,7 @@ const res = aggregate(data, [{ $unwind: { $path: "movies" } }]);
 ];
 ```
 
-## $remove \*
+## $remove
 
 Remove all element from an document that match the expression.
 
@@ -332,6 +332,32 @@ const res = aggregate(users, [
 ]);
 
 (res) => 40;
+```
+
+## Multiple pipelines
+
+```js
+const users = [
+  { id: 4, name: "Dean", age: 40 },
+  { id: 3, name: "Jane", age: 35 },
+  { id: 1, name: "Jane", age: 20 },
+  { id: 2, name: "Bill", age: 35 },
+];
+
+const res = aggregate(data, [
+  { $match: { age: 35 } },
+  {
+    $format: {
+      age: 1,
+      name: 1,
+    },
+  },
+]);
+
+(res) => [
+  { age: 35, name: "Bill" },
+  { age: 35, name: "Jane" },
+];
 ```
 
 ## License
