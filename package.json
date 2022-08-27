@@ -1,21 +1,18 @@
 {
-  "name": "aggregationjs",
-  "version": "1.0.6",
-  "description": "Inspired by mongodb aggregation framework, aggregationjs its lightweight and easy tool to manipulate data.",
-  "main": "./src/index.js",
-  "scripts": {
-    "dev": "nodemon ./src/dev.js"
-  },
-  "author": "rafael hernandez",
-  "license": "MIT",
-  "keywords": [
-    "mongodb",
-    "aggregation",
-    "aggregationjs",
-    "mongodb aggregation"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ralph993/aggregationJS"
-  }
+   "name": "aggregationjs",
+   "version": "1.0.6",
+   "description": "Inspired by mongodb aggregation framework, aggregationjs its lightweight and easy tool to manipulate data.",
+   "main": "./src/index.js",
+   "author": "rafael hernandez",
+   "license": "MIT",
+   "keywords": [
+      "mongodb",
+      "aggregation",
+      "aggregationjs",
+      "mongodb aggregation"
+   ],
+   "repository": {
+      "type": "git",
+      "url": "https://github.com/ralph993/aggregationJS"
+   }
 }
