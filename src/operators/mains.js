@@ -1,52 +1,14 @@
-const mathOperatorsHandlers = {
-   $sum: (arr, field) => {
-      return arr.reduce((acc, item) => acc + item[field], 0);
-   },
-   $avg: (arr, field) => {
-      return mathOperations.$sum(arr, field) / arr.length;
-   },
-   $min: (arr, field) => {
-      return arr.reduce((acc, item) => (item[field] < acc ? item[field] : acc), arr[0][field]);
-   },
-   $max: (arr, field) => {
-      return arr.reduce((acc, item) => (item[field] > acc ? item[field] : acc), arr[0][field]);
-   },
-};
-
-const conditionOperatorsHandlers = {
-   $eq: (arr, field, value) => {
-      return arr.filter((item) => item[field] === value);
-   },
-   $ne: (arr, field, value) => {
-      return arr.filter((item) => item[field] !== value);
-   },
-   $gt: (arr, field, value) => {
-      return arr.filter((item) => item[field] > value);
-   },
-   $gte: (arr, field, value) => {
-      return arr.filter((item) => item[field] >= value);
-   },
-   $lt: (arr, field, value) => {
-      return arr.filter((item) => item[field] < value);
-   },
-   $lte: (arr, field, value) => {
-      return arr.filter((item) => item[field] <= value);
-   },
-
-   $in: (arr, field, value) => {},
-   $and: (arr, field, value) => {},
-   $or: (arr, field, value) => {},
-   $not: (arr, field, value) => {},
-};
+const { conditionOperators } = require("./conditionals");
+const { mathOperators } = require("./math");
 
 const executeConditionOperators = (arr, query) => {
    const [field, obj] = Object?.entries(query)[0];
    if (typeof obj !== "object") return false;
    const [operator, value] = Object?.entries(obj)[0];
-   return conditionOperatorsHandlers[operator](arr, field, value);
+   return conditionOperators[operator](arr, field, value);
 };
 
-exports.operatorsHandlers = {
+exports.mainOperators = {
    $match: (arr, query) => {
       // checl for condition operators
       const conditionOperator = executeConditionOperators(arr, query);
@@ -141,7 +103,7 @@ exports.operatorsHandlers = {
    $math: (arr, query) => {
       const operation = Object.keys(query)[0];
       const field = Object.keys(query[operation])[0];
-      return mathOperatorsHandlers[operation](arr, field);
+      return mathOperators[operation](arr, field);
    },
    $remove: (arr, query) => {
       let result = [];
