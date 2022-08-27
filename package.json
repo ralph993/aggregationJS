@@ -1,18 +1,29 @@
 {
-   "name": "aggregationjs",
-   "version": "1.0.8",
-   "description": "Inspired by mongodb aggregation framework, aggregationjs its lightweight and easy tool to manipulate data.",
-   "main": "./src/index.js",
-   "author": "rafael hernandez",
-   "license": "MIT",
-   "keywords": [
-      "mongodb",
-      "aggregation",
-      "aggregationjs",
-      "mongodb aggregation"
-   ],
-   "repository": {
-      "type": "git",
-      "url": "https://github.com/ralph993/aggregationJS"
-   }
+  "name": "aggregationjs",
+  "version": "1.0.8",
+  "description": "Inspired by mongodb aggregation framework, aggregationjs its lightweight and easy tool to manipulate data.",
+  "main": "./src/index.js",
+  "author": "rafael hernandez",
+  "license": "MIT",
+  "scripts": {
+    "start": "ts-node ./src/index.ts",
+    "dev": "ts-node-dev --respawn ./src/index.ts",
+    "build": "tsc"
+  },
+  "keywords": [
+    "mongodb",
+    "aggregation",
+    "aggregationjs",
+    "mongodb aggregation"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ralph993/aggregationJS"
+  },
+  "devDependencies": {
+    "@types/node": "^18.7.13",
+    "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.8.2"
+  }
 }
