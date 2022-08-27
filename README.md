@@ -20,6 +20,7 @@ npm install aggregationjs
 - [$math](#math)
 - [$remove](#remove)
 - [Multiple pipeline](#multiple-pipeline)
+- [Conditional operators](#conditional-operators)
 
 ## Usage
 
@@ -51,7 +52,7 @@ const res = aggregate(data, [{ $match: { age: 35 } }]);
 ];
 ```
 
-## $groupBy \*
+## $groupBy
 
 Groups the elements of the calling array according to the string values returned by a provided testing function. The returned object has separate properties for each group, containing arrays with the elements in the group.
 
@@ -135,7 +136,7 @@ const res = aggregate(data, [{ $skip: { $count: 1 } }]);
 ];
 ```
 
-## $format \*
+## $format
 
 Passes along the documents with the requested fields to the next stage in the pipeline
 
@@ -211,7 +212,7 @@ const res = aggregate(data, [{ $unwind: { $path: "movies" } }]);
 ];
 ```
 
-## $remove \*
+## $remove
 
 Remove all element from an document that match the expression.
 
@@ -332,6 +333,200 @@ const res = aggregate(users, [
 ]);
 
 (res) => 40;
+```
+
+## Multiple pipeline
+
+Pipelines can support multiple operators
+
+```js
+const data = [
+  { id: 1, name: "Jane", age: 20 },
+  { id: 2, name: "Bill", age: 35 },
+  { id: 3, name: "joe", age: 35 },
+  { id: 4, name: "Dean", age: 40 },
+];
+
+const res = aggregate(data, [
+  { $match: { age: 35 } },
+  {
+    $format: {
+      name: 1,
+    },
+  },
+]);
+
+(res) => [{ name: "Bill" }, { name: "joe" }];
+```
+
+## Conditional operators
+
+#### $eq
+
+Returns all documents equals to
+
+```js
+const data = [
+  { id: 1, name: "Jane", age: 20 },
+  { id: 2, name: "Bill", age: 35 },
+  { id: 3, name: "joe", age: 35 },
+  { id: 4, name: "Dean", age: 40 },
+];
+
+const res = aggregate(data, [
+  {
+    $match: {
+      $eq: {
+        age: 35,
+      },
+    },
+  },
+]);
+
+(res) => [
+  { id: 2, name: "Bill", age: 35 },
+  { id: 3, name: "joe", age: 35 },
+];
+```
+
+#### $ne
+
+Returns all documents no equals to
+
+```js
+const data = [
+  { id: 1, name: "Jane", age: 20 },
+  { id: 2, name: "Bill", age: 35 },
+  { id: 3, name: "joe", age: 35 },
+  { id: 4, name: "Dean", age: 40 },
+];
+
+const res = aggregate(data, [
+  {
+    $match: {
+      $ne: {
+        age: 35,
+      },
+    },
+  },
+]);
+
+(res) => [
+  { id: 1, name: "Jane", age: 20 },
+  { id: 4, name: "Dean", age: 40 },
+];
+```
+
+#### $gt
+
+Returns all documents greater than
+
+```js
+const data = [
+  { id: 1, name: "Jane", age: 20 },
+  { id: 2, name: "Bill", age: 35 },
+  { id: 3, name: "joe", age: 35 },
+  { id: 4, name: "Dean", age: 40 },
+];
+
+const res = aggregate(data, [
+  {
+    $match: {
+      $gt: {
+        age: 20,
+      },
+    },
+  },
+]);
+
+(res) => [
+  { id: 2, name: "Bill", age: 35 },
+  { id: 3, name: "joe", age: 35 },
+  { id: 4, name: "Dean", age: 40 },
+];
+```
+
+#### $gte
+
+Returns all documents greater than or equal to
+
+```js
+const data = [
+  { id: 1, name: "Jane", age: 20 },
+  { id: 2, name: "Bill", age: 35 },
+  { id: 3, name: "joe", age: 35 },
+  { id: 4, name: "Dean", age: 40 },
+];
+
+const res = aggregate(data, [
+  {
+    $match: {
+      $gte: {
+        age: 35,
+      },
+    },
+  },
+]);
+
+(res) => [
+  { id: 2, name: "Bill", age: 35 },
+  { id: 3, name: "joe", age: 35 },
+  { id: 4, name: "Dean", age: 40 },
+];
+```
+
+#### $lt
+
+Returns all documents ​​less than
+
+```js
+const data = [
+  { id: 1, name: "Jane", age: 20 },
+  { id: 2, name: "Bill", age: 35 },
+  { id: 3, name: "joe", age: 35 },
+  { id: 4, name: "Dean", age: 40 },
+];
+
+const res = aggregate(data, [
+  {
+    $match: {
+      $lt: {
+        age: 35,
+      },
+    },
+  },
+]);
+
+(res) => [{ id: 1, name: "Jane", age: 20 }];
+```
+
+#### $lte
+
+Returns all documents ​​less than or equal to
+
+```js
+const data = [
+  { id: 1, name: "Jane", age: 20 },
+  { id: 2, name: "Bill", age: 35 },
+  { id: 3, name: "joe", age: 35 },
+  { id: 4, name: "Dean", age: 40 },
+];
+
+const res = aggregate(data, [
+  {
+    $match: {
+      $lte: {
+        age: 35,
+      },
+    },
+  },
+]);
+
+(res) => [
+  { id: 1, name: "Jane", age: 20 },
+  { id: 2, name: "Bill", age: 35 },
+  { id: 3, name: "joe", age: 35 },
+];
 ```
 
 ## License
