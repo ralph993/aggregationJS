@@ -2,15 +2,25 @@ const { conditionOperators } = require("./conditionals");
 const { mathOperators } = require("./math");
 
 const executeConditionOperators = (arr, query) => {
-	const [field, obj] = Object?.entries(query)[0];
-	if (typeof obj !== "object") return false;
-	const [operator, value] = Object?.entries(obj)[0];
-	return conditionOperators[operator](arr, field, value);
+	const conditions = Object.entries(query);
+	let results = arr;
+
+	for (const [field, obj] of conditions) {
+		if (typeof obj !== "object") continue;
+
+		for (const [operator, value] of Object.entries(obj)) {
+			if (conditionOperators[operator]) {
+				results = conditionOperators[operator](results, field, value);
+			}
+		}
+	}
+
+	return results;
 };
 
 exports.mainOperators = {
 	$match: (arr, query) => {
-		// checl for condition operators
+		// check for condition operators
 		const conditionOperator = executeConditionOperators(arr, query);
 		if (!!conditionOperator || !!conditionOperator?.length) return conditionOperator;
 
